@@ -41,7 +41,7 @@ namespace Task1_Ternary_nrs
 
 				while (Math.Abs(inputNum) > 0)
 				{
-					s = s + (inputNum % 3);
+					s += (inputNum % 3);
 					inputNum = inputNum / 3;
 				}
 
