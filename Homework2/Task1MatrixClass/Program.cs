@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Task1MatrixClass
 {
@@ -56,34 +57,48 @@ namespace Task1MatrixClass
                 return diagonalSum;
             }
 
-                public override bool Equals(object obj)
-                {
-                    var diagMatrix = obj as Matrix;
+            public string PrintMatrixElements()
+            {
+                var builder = new StringBuilder();
 
-                if (obj == null || GetType() != obj.GetType() || Size != diagMatrix.Size)
+                foreach (int number in diagonalArray)
+                {
+                    builder.Append(number.ToString());
+                }
+
+                return builder.ToString();
+            }
+
+            public override bool Equals(object obj)
+            {
+                var testItem = obj as Matrix;
+
+                if (obj == null || GetType() != obj.GetType() || Size != testItem.Size)
                 {
                     return false;
                 }
-
-                
+                                    
                 for(int i = 0; i < diagonalArray.Length; i++)
                 {
-                    if(diagonalArray[i] != diagMatrix.diagonalArray[i])
+                    if(diagonalArray[i] != testItem.diagonalArray[i])
                     {
                         return false;
                     }
                 }
                 
                 return true;
-                }
+            }
 
-                // override object.GetHashCode
-                public override int GetHashCode()
-                {
-                    // TODO: write your implementation of GetHashCode() here
-                    throw new NotImplementedException();
-                    return base.GetHashCode();
-                }
+                
+            public override int GetHashCode()
+            {
+                return  base.GetHashCode();
+            }
+
+            public override string ToString()
+            {
+                return "Matrix-Size is " + Size + " Elements are " + PrintMatrixElements();
+            }
         }
 
 
@@ -108,6 +123,9 @@ namespace Task1MatrixClass
 
             Console.WriteLine(TestMatrix.Equals(TestMatrix1));
             Console.WriteLine(TestMatrix.Equals(TestMatrix2));
+
+            Console.WriteLine(TestMatrix1.ToString());
+            
 
 
         }
