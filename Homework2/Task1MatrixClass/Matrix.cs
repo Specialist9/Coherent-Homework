@@ -21,7 +21,7 @@ namespace Task1MatrixClass
             {
                 Size = 0;
             }
-            //Console.WriteLine(Size);
+            
         }
         public int this[int i, int j]
         {
@@ -40,17 +40,14 @@ namespace Task1MatrixClass
 
         }
 
-        public int Track()
+        public int Track() //Sum of the diagonal numbers in the matrix
         {
             int diagonalSum = 0;
 
-            for (int i = 0, j = 0; i < diagonalArray.Length; i++, j++) //delete j
+            for (int i = 0; i < diagonalArray.Length; i++)
             {
-                if (i == j) //delete condition, just use i
-                {
-                    diagonalSum += diagonalArray[i];
-                }
-
+                diagonalSum += diagonalArray[i];
+                
             }
             return diagonalSum;
         }

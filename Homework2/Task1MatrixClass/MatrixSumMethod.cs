@@ -10,21 +10,60 @@ namespace Task1MatrixClass
     {
         public static Matrix MatrixAdd(this Matrix obj1, Matrix obj2)
         {
-            int newSize1 = obj1.Size;
-            int[] newDiagNumbers1 = obj1.diagonalArray;
+            
+            int[] oldDiagnumbers1 = obj1.diagonalArray;
 
-            int newSize2 = obj2.Size;
-            int[] newDiagNumbers2 = obj2.diagonalArray;
+            
+            int[] oldDiagnumbers2 = obj2.diagonalArray;
+
+            int newSize = obj1.Size;
+            int[] newDiagNumbers = new int[obj1.diagonalArray.Length];
+
 
             if(obj1.Size == obj2.Size)
             {
-                return obj2;
+                for(int i = 0; i < oldDiagnumbers1.Length; i++)
+                {
+                    newDiagNumbers[i] = oldDiagnumbers1[i] + oldDiagnumbers2[i];
+                }
+                
             }
+            else if(obj1.Size < obj2.Size)
+            {
+                newSize = obj2.Size;
 
+                oldDiagnumbers1 = new int[obj2.diagonalArray.Length];
+
+                obj1.diagonalArray.CopyTo(oldDiagnumbers1, 0);
+
+                newDiagNumbers = new int[obj2.diagonalArray.Length];
+
+                
+                for(int i = 0; i < oldDiagnumbers2.Length; i++)
+                {
+                    newDiagNumbers[i] = oldDiagnumbers1[i] + oldDiagnumbers2[i];
+                }
+            }
+            else if(obj1.Size > obj2.Size)
+            {
+                newSize = obj1.Size;
+
+                oldDiagnumbers2 = new int[obj1.diagonalArray.Length];
+
+                obj2.diagonalArray.CopyTo(oldDiagnumbers2, 0);
+
+                newDiagNumbers = new int[obj1.diagonalArray.Length];
+
+
+                for (int i = 0; i < oldDiagnumbers1.Length; i++)
+                {
+                    newDiagNumbers[i] = oldDiagnumbers1[i] + oldDiagnumbers2[i];
+                }
+            }
             
-            //var MewMatrix = new Matrix(int newSize, int[] newDiagNumbers); 
-            
-            throw new NotImplementedException();
+            var NewMatrix = new Matrix(newSize, newDiagNumbers);
+
+            return NewMatrix;
         }
     }
 }
