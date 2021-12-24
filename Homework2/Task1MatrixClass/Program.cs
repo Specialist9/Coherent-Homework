@@ -10,8 +10,8 @@ namespace Task1MatrixClass
         static void Main(string[] args)
         {
 
-            int[] testNumbers = { 9, 6, 4, 2 };
-            int testSize = 4;
+            int[] testNumbers = { 9, 6, 4, };
+            int testSize = 3;
 
             int[] testNumbers2 = { 7, 5, 8 };
             int testSize2 = 3;
