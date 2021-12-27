@@ -42,11 +42,6 @@ namespace Task2TrainingManagementSystem
             //Console.WriteLine(CopyOfTraining.Sum());
             Console.WriteLine(CopyOfTraining.Description);
 
-            PropertyInfo[] myPropInfo = CopyOfTraining.GetType().GetProperties();
-            for(int i = 0; i < myPropInfo.Length; i++)
-            {
-                Console.WriteLine(myPropInfo[i].ToString());
-            }
         }
     }
 }
