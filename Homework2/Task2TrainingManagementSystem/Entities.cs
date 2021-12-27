@@ -8,11 +8,11 @@ namespace Task2TrainingManagementSystem
 {
     abstract class Entities
     {
-        //public string Description { get; set; }
+        public string Description { get; set; }
 
         public Entities(string description)
         {
-            //Description = description;
+            Description = description;
         }
     }
 }

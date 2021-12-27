@@ -8,11 +8,11 @@ namespace Task2TrainingManagementSystem
 {
     class Lecture : Training
     {
-        //string Topic { get; set; }
+        string Topic { get; set; }
         public Lecture(string description, string topic) : base(description)
         {
-            //Topic = topic;
-            //Console.WriteLine($"{description} / {topic} ");
+            Topic = topic;
+            
             this.Add(this);
         }
     }

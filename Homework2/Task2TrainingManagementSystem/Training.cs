@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Task2TrainingManagementSystem
 {
-    class Training : Entities
+    class Training : Entities, ICloneable
     {
-        string Description { get; set; }
+        
         public static List<object> Trainingslist = new List<object>();
         
         public Training(string description) : base(description)
@@ -34,13 +34,15 @@ namespace Task2TrainingManagementSystem
             return true;
         }
 
-        public Training Clone()
+        public object Clone()
         {
-            //Description = this.Description;
-            Trainingslist = Training.Trainingslist;
+            
+            List<object> Trainingslist = new List<object>(Training.Trainingslist);
 
             return new Training(this.Description);
 
         }
+
+        //public int Sum() => 6 + 5;
     }
 }

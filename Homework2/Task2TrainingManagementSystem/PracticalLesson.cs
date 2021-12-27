@@ -8,13 +8,13 @@ namespace Task2TrainingManagementSystem
 {
     class PracticalLesson : Training
     {
-        //string Task { get; set; }
-        //string Solution { get; set; }
+        string Task { get; set; }
+        string Solution { get; set; }
         public PracticalLesson(string description, string task, string solution) : base (description)
         {
-            //Task = task;
-            //Solution = solution;
-            //Console.WriteLine($"{description} / {task} / {solution}");
+            Task = task;
+            Solution = solution;
+            
             this.Add(this);
         }
     }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Reflection;
+using System.Collections.Generic;
 
 namespace Task2TrainingManagementSystem
 {
@@ -6,28 +8,11 @@ namespace Task2TrainingManagementSystem
     {
         static void Main(string[] args)
         {
-            Training NewTraining = new Training("New T description");
-            Training Lecture1 = new Lecture("First lecture", "C#");
-
-            /*foreach (object element in Training.Trainingslist)
-            {
-                Console.WriteLine(element);
-            }*/
-
-            Console.WriteLine();
+            Training Training1 = new Training("Training 1 description");
 
             Training Practice1 = new PracticalLesson("First practical lesson", "Do math", "Solved");
 
-            
-            /*foreach(object element in Training.Trainingslist)
-            {
-                Console.WriteLine(element);
-            }*/
-
-            Console.WriteLine();
-
             Training Practice2 = new PracticalLesson("Second practical lesson", "Do physics", "Trying");
-
 
             foreach (object element in Training.Trainingslist)
             {
@@ -35,18 +20,27 @@ namespace Task2TrainingManagementSystem
             }
 
             Console.WriteLine();
-            //Console.WriteLine(Training.Trainingslist[2].Solution);
 
             Console.WriteLine(Practice2.IsPractical(Training.Trainingslist));
 
-            Console.WriteLine(Practice2.Clone());
 
-            var CopyOfTraining = Practice2.Clone();
-            
-            foreach (object element in CopyOfTraining.Trainingslist)
+            Training Lecture1 = new Lecture("First lecture", "C#");
+
+            foreach (object element in Training.Trainingslist)
             {
                 Console.WriteLine(element);
             }
+
+            Console.WriteLine();
+
+            Console.WriteLine(Practice2.IsPractical(Training.Trainingslist));
+
+            var CopyOfTraining = (Training)Training1.Clone();
+
+            Console.WriteLine(Training1.Description);
+            Console.WriteLine(Practice2.Description);
+            //Console.WriteLine(CopyOfTraining.Sum());
+            Console.WriteLine(CopyOfTraining.Description);
 
         }
     }
