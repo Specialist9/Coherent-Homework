@@ -8,7 +8,7 @@ namespace Task2TrainingManagementSystem
 {
     class Lecture : Training
     {
-        string Topic { get; set; }
+        public string Topic { get; set; }
         public Lecture(string description, string topic) : base(description)
         {
             Topic = topic;
