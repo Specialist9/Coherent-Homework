@@ -20,7 +20,7 @@ namespace Task1PianoKeys
 
             if(Octave == Octaves.Zero)
             {
-                if(Note != Notes.A || Note != Notes.B)
+                if(Note != Notes.A && Note != Notes.B)
                 {
                     throw new ArgumentException("Octave 0 has only notes A, B");
                 }
@@ -60,6 +60,11 @@ namespace Task1PianoKeys
             
             var testKey = (Key)obj;
 
+            if(this.Octave == testKey.Octave && this.Note == testKey.Note && this.Accidental == testKey.Accidental)
+            {
+                return true;
+            }
+
             if(this.Octave == testKey.Octave)
             {
                 if(this.Accidental == Accidentals.Sharp && testKey.Accidental == Accidentals.Flat)
@@ -91,12 +96,26 @@ namespace Task1PianoKeys
 
         public override int GetHashCode()
         {
-            return base.GetHashCode();
+            return (this.ToString()).GetHashCode();
         }
 
         public int CompareTo(Key other)
         {
-            throw new NotImplementedException();
+            if(this.Octave == other.Octave)
+            {
+                if(this.Note == other.Note)
+                {
+                    return this.Accidental.CompareTo(other.Accidental);
+                }
+                else if (this.Equals(other))
+                {
+                    return 0;
+                }
+
+                return this.Note.CompareTo(other.Note);
+            }
+
+            return this.Octave.CompareTo(other.Octave);
         }
     }
 
