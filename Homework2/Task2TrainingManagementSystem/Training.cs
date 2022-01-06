@@ -10,19 +10,19 @@ namespace Task2TrainingManagementSystem
     class Training : Entities, ICloneable
     {
         
-        public static List<object> Trainingslist = new List<object>();
+        public List<Entities> Trainingslist = new List<Entities>();
         
         public Training(string description) : base(description)
         {
             Description = description;
         }
 
-        public void Add(object element)
+        public void Add(Entities element)
         {
-            Trainingslist.Add(element);
+            this.Trainingslist.Add(element);
         }
 
-        public bool IsPractical(List<object> Testinglist)
+        public static bool IsPractical(List<Entities> Testinglist)
         {
             foreach(object element in Testinglist)
             {
@@ -36,13 +36,31 @@ namespace Task2TrainingManagementSystem
 
         public object Clone()
         {
-            
-            List<object> Trainingslist = new List<object>(Training.Trainingslist);
+            List<Entities> CopyList = new List<Entities>();
 
-            return new Training(this.Description);
+            foreach(var item in Trainingslist)
+            {
+                CopyList.Add(item);
+            }
+
+            var TrainingClone = new Training(this.Description)
+            {
+                Trainingslist = CopyList
+            };
+            
+            return TrainingClone;
 
         }
 
-        //public int Sum() => 6 + 5;
+        public override string ToString()
+        {
+            StringBuilder temp = new();
+            foreach(var item in Trainingslist)
+            {
+                temp.Append($" {item},\n");
+            }
+            return temp.ToString();
+        }
+
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task2TrainingManagementSystem
 {
-    class PracticalLesson : Training
+    class PracticalLesson : Entities
     {
         public string Task { get; set; }
         public string Solution { get; set; }
@@ -15,7 +15,7 @@ namespace Task2TrainingManagementSystem
             Task = task;
             Solution = solution;
             
-            this.Add(this);
+            //Training.Add(this);
         }
     }
 }

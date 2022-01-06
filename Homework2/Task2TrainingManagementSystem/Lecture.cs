@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Task2TrainingManagementSystem
 {
-    class Lecture : Training
+    class Lecture : Entities
     {
         public string Topic { get; set; }
         public Lecture(string description, string topic) : base(description)
         {
             Topic = topic;
             
-            this.Add(this);
+            //Training.Add(this);
         }
     }
 }

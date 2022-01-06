@@ -9,13 +9,16 @@ namespace Task1MatrixClass
 {
     public class Matrix
     {
-        public int Size { get; }
-        public int[] diagonalArray;
+        private int _size;
+        private int[] _diagonalArray;
+
+        public int Size { get => _size; set => _size = value; }
+        public int[] DiagonalArray { get => _diagonalArray; set => _diagonalArray = value; }
 
         public Matrix(int matrixSize, params int[] diagonalNumbers)
         {
-            Size = matrixSize;
-            diagonalArray = diagonalNumbers;
+            Size = diagonalNumbers.Length;
+            DiagonalArray = diagonalNumbers;
 
             if ((matrixSize != diagonalNumbers.Length) || (diagonalNumbers == null))
             {
@@ -27,9 +30,9 @@ namespace Task1MatrixClass
         {
             get
             {
-                if ((i == j) && (i >= 0) && (i < diagonalArray.Length))
+                if (i == j && i >= 0 && i < DiagonalArray.Length)
                 {
-                    return diagonalArray[i];
+                    return DiagonalArray[i];
                 }
                 else //(i < 0 || i >= diagonalArray.Length)
                 {
@@ -40,14 +43,11 @@ namespace Task1MatrixClass
             
             set
             {
-                if ((i == j) && (i >= 0) && (i < diagonalArray.Length))
+                if ((i == j) && (i >= 0) && (i < DiagonalArray.Length))
                 {
-                    diagonalArray[i] = value;
+                    DiagonalArray[i] = value;
                 }
-                else
-                {
-                    return;
-                }
+
             }
 
         }
@@ -56,9 +56,9 @@ namespace Task1MatrixClass
         {
             int diagonalSum = 0;
 
-            for (int i = 0; i < diagonalArray.Length; i++)
+            for (int i = 0; i < DiagonalArray.Length; i++)
             {
-                diagonalSum += diagonalArray[i];
+                diagonalSum += DiagonalArray[i];
                 
             }
             return diagonalSum;
@@ -68,7 +68,7 @@ namespace Task1MatrixClass
         {
             var builder = new StringBuilder();
 
-            foreach (int number in diagonalArray)
+            foreach (int number in DiagonalArray)
             {
                 builder.Append(number);
             }
@@ -85,9 +85,9 @@ namespace Task1MatrixClass
                 return false;
             }
 
-            for (int i = 0; i < diagonalArray.Length; i++)
+            for (int i = 0; i < DiagonalArray.Length; i++)
             {
-                if (diagonalArray[i] != testItem.diagonalArray[i])
+                if (DiagonalArray[i] != testItem.DiagonalArray[i])
                 {
                     return false;
                 }
@@ -99,7 +99,7 @@ namespace Task1MatrixClass
 
         public override int GetHashCode()
         {
-            return diagonalArray.GetHashCode();
+            return DiagonalArray.GetHashCode();
         }
 
         public override string ToString()

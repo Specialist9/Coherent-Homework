@@ -13,8 +13,8 @@ namespace Task1MatrixClass
             int[] testNumbers = { 9, 6, 4, };
             int testSize = 3;
 
-            int[] testNumbers2 = { 7, 5, 8 };
-            int testSize2 = 3;
+            int[] testNumbers2 = { 7, 5, 8, 9 };
+            int testSize2 = 4;
 
             Matrix TestMatrix = new Matrix(testSize, testNumbers);
             Matrix TestMatrix1 = new Matrix(testSize, testNumbers);
