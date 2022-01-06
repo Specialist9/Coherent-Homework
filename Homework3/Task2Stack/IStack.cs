@@ -2,11 +2,10 @@
 {
     public interface IStack<T>
     {
-        int Count { get; }
-        bool IsEmpty { get; }
-
+        bool isEmpty();
+        void Push(T item);
         T Peek();
         T Pop();
-        void Push(T item);
+        //T[] Reverse();
     }
 }

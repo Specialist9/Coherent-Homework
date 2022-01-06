@@ -8,52 +8,79 @@ namespace Task2Stack
 {
     public class Stack<T> : IStack<T>
     {
-        private T[] items; // элементы стека
-        private int count;  // количество элементов
-        const int n = 10;   // количество элементов в массиве по умолчанию
-        public Stack()
+        private T[] myStack;
+        private int top;
+        private int stackSize;
+
+        public T[] MyStack()
         {
-            items = new T[n];
+            return myStack;
         }
-        public Stack(int length)
+
+        public Stack(int size)
         {
-            items = new T[length];
+            stackSize = size;
+            top = -1;
+            myStack = new T[size];
         }
-        // пуст ли стек
-        public bool IsEmpty
+
+        public bool isEmpty()
         {
-            get { return count == 0; }
+            return (top < 0) ;
         }
-        // размер стека
-        public int Count
-        {
-            get { return count; }
-        }
-        // добвление элемента
-        public void Push(T item)
-        {
-            // если стек заполнен, выбрасываем исключение
-            if (count == items.Length)
-                throw new InvalidOperationException("Переполнение стека");
-            items[count++] = item;
-        }
-        // извлечение элемента
-        public T Pop()
-        {
-            // если стек пуст, выбрасываем исключение
-            if (IsEmpty)
-                throw new InvalidOperationException("Стек пуст");
-            T item = items[--count];
-            items[count] = default(T); // сбрасываем ссылку
-            return item;
-        }
-        // возвращаем элемент из верхушки стека
+
         public T Peek()
         {
-            // если стек пуст, выбрасываем исключение
-            if (IsEmpty)
-                throw new InvalidOperationException("Стек пуст");
-            return items[count - 1];
+            if(top < 0)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            else
+            {
+                T value = myStack[top];
+                return value;
+            }
         }
+
+        public T Pop()
+        {
+            if(top < 0)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            else
+            {
+                T value = myStack[top--];
+                return value;
+            }
+
+        }
+
+        public void Push(T item)
+        {
+            if(top >= (stackSize-1))
+            {
+                throw new IndexOutOfRangeException();
+            }
+            else
+            {
+                myStack[++top] = item;
+            }
+            
+        }
+
+        public override string ToString()
+        {
+            StringBuilder tempString = new();
+
+            for (int i = top; i >= 0; i--)
+            {
+                tempString.Append($"{myStack[i]}, ");
+
+            }
+            
+            return tempString.ToString();
+        }
+
     }
 }
