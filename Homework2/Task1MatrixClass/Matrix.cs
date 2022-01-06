@@ -37,6 +37,18 @@ namespace Task1MatrixClass
                 }
 
             }
+            
+            set
+            {
+                if ((i == j) && (i >= 0) && (i < diagonalArray.Length))
+                {
+                    diagonalArray[i] = value;
+                }
+                else
+                {
+                    return;
+                }
+            }
 
         }
 
