@@ -18,14 +18,13 @@ namespace Task1MatrixClass
 
         public Matrix(params int[] diagonalNumbers)
         {
-            Size = diagonalNumbers.Length;
-            DiagonalArray = diagonalNumbers;
-
             if (diagonalNumbers == null)
             {
                 Size = 0;
             }
-            
+            Size = diagonalNumbers.Length;
+            DiagonalArray = diagonalNumbers;
+
         }
         public int this[int i, int j]
         {
