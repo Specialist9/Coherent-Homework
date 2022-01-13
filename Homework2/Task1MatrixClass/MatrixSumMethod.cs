@@ -18,7 +18,7 @@ namespace Task1MatrixClass
                 newElements[i] = obj1[i, i] + obj2[i, i];   //We do not worry about OutOfRangException, because our indexers return 0 when i is out of size. 
             }
             
-            return new Matrix(newSize, newElements);
+            return new Matrix(newElements);
         }
     }
 }

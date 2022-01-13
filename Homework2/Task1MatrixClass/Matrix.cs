@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Task1MatrixClass;
 
 
 namespace Task1MatrixClass
@@ -12,15 +13,15 @@ namespace Task1MatrixClass
         private int _size;
         private int[] _diagonalArray;
 
-        public int Size { get => _size; set => _size = value; }
-        public int[] DiagonalArray { get => _diagonalArray; set => _diagonalArray = value; }
+        private int Size { get => _size; set => _size = value; }
+        private int[] DiagonalArray { get => _diagonalArray; set => _diagonalArray = value; }
 
-        public Matrix(int matrixSize, params int[] diagonalNumbers)
+        public Matrix(params int[] diagonalNumbers)
         {
             Size = diagonalNumbers.Length;
             DiagonalArray = diagonalNumbers;
 
-            if ((matrixSize != diagonalNumbers.Length) || (diagonalNumbers == null))
+            if (diagonalNumbers == null)
             {
                 Size = 0;
             }

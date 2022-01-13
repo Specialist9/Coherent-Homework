@@ -1,30 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Xml;
+using System.Xml.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 
 namespace Task2TrainingManagementSystem
 {
-    class Training : Entities, ICloneable
+
+    public class Training : Entities, ICloneable
     {
-        
         public List<Entities> Trainingslist = new List<Entities>();
         
         public Training(string description) : base(description)
         {
             Description = description;
         }
-
+        
         public void Add(Entities element)
         {
             this.Trainingslist.Add(element);
         }
 
-        public static bool IsPractical(List<Entities> Testinglist)
+        public bool IsPractical()
         {
-            foreach(object element in Testinglist)
+            foreach(object element in Trainingslist)
             {
                 if(element is Lecture)
                 {
@@ -34,22 +37,21 @@ namespace Task2TrainingManagementSystem
             return true;
         }
 
+
         public object Clone()
         {
             List<Entities> CopyList = new List<Entities>();
 
-            foreach(var item in Trainingslist)
+            foreach (Entities item in Trainingslist)
             {
-                CopyList.Add(item);
+                var tempItem = item.Clone();
+                CopyList.Add((Entities)tempItem);
             }
 
-            var TrainingClone = new Training(this.Description)
+            return new Training(Description)
             {
                 Trainingslist = CopyList
             };
-            
-            return TrainingClone;
-
         }
 
         public override string ToString()
@@ -61,6 +63,7 @@ namespace Task2TrainingManagementSystem
             }
             return temp.ToString();
         }
+
 
     }
 }

@@ -11,14 +11,14 @@ namespace Task1MatrixClass
         {
 
             int[] testNumbers = { 9, 6, 4, };
-            int testSize = 3;
+            //int testSize = 3;
 
             int[] testNumbers2 = { 7, 5, 8, 9 };
-            int testSize2 = 4;
+            //int testSize2 = 4;
 
-            Matrix TestMatrix = new Matrix(testSize, testNumbers);
-            Matrix TestMatrix1 = new Matrix(testSize, testNumbers);
-            Matrix TestMatrix2 = new Matrix(testSize2, testNumbers2);
+            Matrix TestMatrix = new Matrix(testNumbers);
+            Matrix TestMatrix1 = new Matrix(testNumbers);
+            Matrix TestMatrix2 = new Matrix(testNumbers2);
 
             Console.WriteLine(TestMatrix[0, 0]);
             Console.WriteLine(TestMatrix[1, 1]);

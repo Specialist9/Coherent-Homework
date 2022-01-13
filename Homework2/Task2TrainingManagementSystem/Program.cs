@@ -8,42 +8,38 @@ namespace Task2TrainingManagementSystem
     {
         static void Main(string[] args)
         {
-                      
-            Training Training1 = new Training("Training 1 description");
+            var originalTraining = new Training("desc1");
+            Lecture lecture = new Lecture("First lecture", "C#");
+            Lecture lecture2 = new Lecture("Second lecture", "more C#");
 
-            PracticalLesson Practice1 = new PracticalLesson("First practical lesson", "Do math", "Solved");
+            originalTraining.Add(lecture);
+            originalTraining.Add(lecture2);
 
-            PracticalLesson Practice2 = new PracticalLesson("Second practical lesson", "Do physics", "Trying");
-
-            Lecture Lecture1 = new Lecture("First lecture", "C#");
-
+            Console.WriteLine(lecture.Topic);
+            Console.WriteLine(lecture2.Topic);
             Console.WriteLine();
 
+            var clonedTraining = (Training)originalTraining.Clone();
 
-            Training1.Add(Practice1);
-            Training1.Add(Practice2);
-            Console.WriteLine(Training1.ToString());
 
-            var CopyOfTraining = (Training)Training1.Clone();
+            lecture.Topic = "The updated topic!";
+            lecture2.Topic = "Update of second lecture";
 
-            Console.WriteLine(Training.IsPractical(Training1.Trainingslist));
-            Console.WriteLine(CopyOfTraining.ToString());
-
-            Training1.Add(Lecture1);
+            Console.WriteLine(lecture.Topic);
+            Console.WriteLine(lecture2.Topic);
             Console.WriteLine();
 
-            Console.WriteLine(Training.IsPractical(Training1.Trainingslist));
+            var clonedLecture10 = (Lecture)clonedTraining.Trainingslist[0];
+            var clonedLecture11 = (Lecture)clonedTraining.Trainingslist[1];
 
-            var CopyOfTraining2 = (Training)Training1.Clone();
-            Console.WriteLine();
+            Console.WriteLine(clonedLecture10.Topic);
+            Console.WriteLine(clonedLecture11.Topic);
+
+
+            Console.WriteLine(clonedLecture10 == lecture);
+            Console.WriteLine(clonedLecture11 == lecture2);
 
             
-            Console.WriteLine();
-            Console.WriteLine(Training1.ToString());
-
-            Console.WriteLine(CopyOfTraining2.ToString());
-
-
         }
     }
 }

@@ -6,13 +6,23 @@ using System.Threading.Tasks;
 
 namespace Task2TrainingManagementSystem
 {
-    abstract class Entities
+    public abstract class Entities : ICloneable
     {
         public string Description { get; set; }
 
         public Entities(string description)
         {
             Description = description;
+        }
+
+        public Entities()
+        {
+
+        }
+
+        public object Clone()
+        {
+            return (Entities)MemberwiseClone();
         }
     }
 }
