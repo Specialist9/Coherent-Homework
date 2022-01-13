@@ -13,7 +13,7 @@ namespace Task1MatrixClass
         private int _size;
         private int[] _diagonalArray;
 
-        private int Size { get => _size; set => _size = value; }
+        public int Size { get => _size; private set => _size = value; }
         private int[] DiagonalArray { get => _diagonalArray; set => _diagonalArray = value; }
 
         public Matrix(params int[] diagonalNumbers)
