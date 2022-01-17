@@ -13,7 +13,7 @@ namespace Task2TrainingManagementSystem
 
     public class Training : Entities, ICloneable
     {
-        public List<Entities> Trainingslist = new List<Entities>();
+        public List<Entities> Trainingslist { get; private set; } = new();
         
         public Training(string description) : base(description)
         {
@@ -40,17 +40,17 @@ namespace Task2TrainingManagementSystem
 
         public object Clone()
         {
-            List<Entities> CopyList = new List<Entities>();
+            List<Entities> copyList = new();
 
             foreach (Entities item in Trainingslist)
             {
                 var tempItem = item.Clone();
-                CopyList.Add((Entities)tempItem);
+                copyList.Add((Entities)tempItem);
             }
 
             return new Training(Description)
             {
-                Trainingslist = CopyList
+                Trainingslist = copyList
             };
         }
 
