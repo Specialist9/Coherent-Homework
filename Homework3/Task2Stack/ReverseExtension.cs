@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,11 +9,9 @@ namespace Task2Stack
 {
     static class ReverseExtension
     {
-        public static Stack<T> Reverse<T>(this IStack<T> stack, Stack<T> originalStack)
+        public static Stack<T> Reverse<T>(this IStack<T> stack)
         {
-            Array.Reverse(originalStack.MyStack());
-            Console.WriteLine("This is the reverse ext method");
-            return originalStack;
+            return new Stack<T>(1);
         }
 
     }

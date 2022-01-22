@@ -13,11 +13,11 @@ namespace Task2Stack
                 Stack1.Push("Ford");
                 Stack1.Push("Toyota");
                 Stack1.Push("Opel");
-                Stack1.Push("Audi");
+                //Stack1.Push("Audi");
 
                 Console.WriteLine(Stack1.ToString());
 
-                Stack1.Reverse<string>(Stack1);
+                Stack1.Reverse();
 
                 Console.WriteLine(Stack1.ToString());
             }

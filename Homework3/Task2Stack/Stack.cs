@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,25 +9,27 @@ namespace Task2Stack
 {
     public class Stack<T> : IStack<T>
     {
-        private T[] myStack;
+        private readonly T[] myStack;
         private int top;
-        private int stackSize;
-
-        public T[] MyStack()
-        {
-            return myStack;
-        }
+        private readonly int stackSize;
 
         public Stack(int size)
         {
-            stackSize = size;
+            stackSize = size > 0 ? size : 1;
             top = -1;
             myStack = new T[size];
         }
 
-        public bool isEmpty()
+        public Stack(int size, params T[] stackValues)
         {
-            return (top < 0) ;
+            stackSize = size > 0 ? size : 1;
+            top = -1;
+            myStack = stackValues;
+        }
+
+        public bool IsEmpty()
+        {
+            return top < 0 ;
         }
 
         public T Peek()
@@ -80,6 +83,14 @@ namespace Task2Stack
             }
             
             return tempString.ToString();
+        }
+
+
+        public Stack<T> Reverse()
+        {
+            T[] reversedStack = myStack;
+            Array.Reverse(reversedStack);
+            return new Stack<T>(stackSize, reversedStack);
         }
 
     }

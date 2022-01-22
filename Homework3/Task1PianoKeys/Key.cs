@@ -8,26 +8,26 @@ namespace Task1PianoKeys
 {
     struct Key : IComparable<Key>
     {
-        public Notes Note;
-        public Octaves Octave;
-        public Accidentals Accidental;
+        public Note Note;
+        public Octave Octave;
+        public Accidental Accidental;
 
-        public Key (Notes note, Octaves octave, Accidentals accidental = 0)
+        public Key (Note note, Octave octave, Accidental accidental = 0)
         {
             Note = note;
             Octave = octave;
             Accidental = accidental;
 
-            if(Octave == Octaves.Zero)
+            if(Octave == Octave.Zero)
             {
-                if(Note != Notes.A && Note != Notes.B)
+                if(Note != Note.A && Note != Note.B)
                 {
                     throw new ArgumentException("Octave 0 has only notes A, B");
                 }
             }
-            else if(Octave == Octaves.Eighth)
+            else if(Octave == Octave.Eighth)
             {
-                if(Note != Notes.C)
+                if(Note != Note.C)
                 {
                     throw new ArgumentException("Octave 8 has only note C");
                 }
@@ -36,16 +36,15 @@ namespace Task1PianoKeys
 
         public override string ToString()
         {
-            StringBuilder temp = new();
+            string temp = string.Empty;
 
             if(Accidental == 0)
             {
-                temp.Append($"{Note}{(int)Octave}");
+                temp = $"{Note}{(int)Octave}";
             }
             else
             {
-                temp.Append($"{Note}{(char)Accidental}{(int)Octave}");
-
+                temp = $"{Note}{(char)Accidental}{(int)Octave}";
             }
 
             return temp.ToString();
@@ -53,7 +52,7 @@ namespace Task1PianoKeys
 
         public override bool Equals(object obj)
         {
-            if(!(obj is Key))
+            if(!(obj is Key) || obj is null)
             {
                 return false;
             }
@@ -67,25 +66,25 @@ namespace Task1PianoKeys
 
             if(this.Octave == testKey.Octave)
             {
-                if(this.Accidental == Accidentals.Sharp && testKey.Accidental == Accidentals.Flat)
+                if(this.Accidental == Accidental.Sharp && testKey.Accidental == Accidental.Flat)
                 {
-                    if ( (this.Note == Notes.A && testKey.Note == Notes.B) ||
-                         (this.Note == Notes.C && testKey.Note == Notes.D) ||
-                         (this.Note == Notes.D && testKey.Note == Notes.E) ||
-                         (this.Note == Notes.F && testKey.Note == Notes.G) ||
-                         (this.Note == Notes.G && testKey.Note == Notes.A)  )
+                    if ( (this.Note == Note.A && testKey.Note == Note.B) ||
+                         (this.Note == Note.C && testKey.Note == Note.D) ||
+                         (this.Note == Note.D && testKey.Note == Note.E) ||
+                         (this.Note == Note.F && testKey.Note == Note.G) ||
+                         (this.Note == Note.G && testKey.Note == Note.A)  )
                     {
                         return true;
                     }
 
                 }
-                else if(this.Accidental == Accidentals.Flat && testKey.Accidental == Accidentals.Sharp)
+                else if(this.Accidental == Accidental.Flat && testKey.Accidental == Accidental.Sharp)
                 {
-                    if ( (this.Note == Notes.B && testKey.Note == Notes.A) ||
-                         (this.Note == Notes.D && testKey.Note == Notes.C) ||
-                         (this.Note == Notes.E && testKey.Note == Notes.D) ||
-                         (this.Note == Notes.G && testKey.Note == Notes.F) ||
-                         (this.Note == Notes.A && testKey.Note == Notes.G)  )
+                    if ( (this.Note == Note.B && testKey.Note == Note.A) ||
+                         (this.Note == Note.D && testKey.Note == Note.C) ||
+                         (this.Note == Note.E && testKey.Note == Note.D) ||
+                         (this.Note == Note.G && testKey.Note == Note.F) ||
+                         (this.Note == Note.A && testKey.Note == Note.G)  )
                     {
                         return true;
                     }
@@ -96,7 +95,7 @@ namespace Task1PianoKeys
 
         public override int GetHashCode()
         {
-            return (this.ToString()).GetHashCode();
+            return (Octave.GetHashCode());
         }
 
         public int CompareTo(Key other)
@@ -119,7 +118,7 @@ namespace Task1PianoKeys
         }
     }
 
-    public enum Octaves
+    public enum Octave
     {
         Zero,
         First,
@@ -133,7 +132,7 @@ namespace Task1PianoKeys
 
     }
 
-    public enum Notes
+    public enum Note
     {
         C,
         D,
@@ -144,7 +143,7 @@ namespace Task1PianoKeys
         B
     }
 
-    public enum Accidentals
+    public enum Accidental
     {
         None = 0,
         Sharp = '#',

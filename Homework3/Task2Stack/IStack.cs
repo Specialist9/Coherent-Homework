@@ -1,11 +1,18 @@
-﻿namespace Task2Stack
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Task2Stack
 {
     public interface IStack<T>
     {
-        bool isEmpty();
+        bool IsEmpty();
         void Push(T item);
         T Peek();
         T Pop();
-        //T[] Reverse();
+        //Stack<T> Reverse();
     }
 }
