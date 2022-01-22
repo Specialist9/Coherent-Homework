@@ -20,10 +20,10 @@ namespace Task2Stack
                 Stack1.Reverse();
 
                 Console.WriteLine(Stack1.ToString());
+
             }
             catch (IndexOutOfRangeException)
             {
-
                 Console.WriteLine("Invalid stack index");
             }
 

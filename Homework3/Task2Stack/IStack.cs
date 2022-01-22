@@ -13,6 +13,6 @@ namespace Task2Stack
         void Push(T item);
         T Peek();
         T Pop();
-        //Stack<T> Reverse();
+        //Stack<T> Reverse(); Why does it work here, but in extension method Reverse() needs a <T> type?
     }
 }

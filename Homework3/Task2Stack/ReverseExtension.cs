@@ -9,9 +9,9 @@ namespace Task2Stack
 {
     static class ReverseExtension
     {
-        public static Stack<T> Reverse<T>(this IStack<T> stack)
+        public static Stack<T> Reverse<T>(this IStack<T> stack) // Why does the method name need to include <T> here, but not in IStack
         {
-            return new Stack<T>(1);
+            return new Stack<T>(default);
         }
 
     }

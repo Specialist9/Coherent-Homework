@@ -20,13 +20,6 @@ namespace Task2Stack
             myStack = new T[size];
         }
 
-        public Stack(int size, params T[] stackValues)
-        {
-            stackSize = size > 0 ? size : 1;
-            top = -1;
-            myStack = stackValues;
-        }
-
         public bool IsEmpty()
         {
             return top < 0 ;
@@ -85,12 +78,10 @@ namespace Task2Stack
             return tempString.ToString();
         }
 
-
         public Stack<T> Reverse()
         {
-            T[] reversedStack = myStack;
-            Array.Reverse(reversedStack);
-            return new Stack<T>(stackSize, reversedStack);
+            Array.Reverse(myStack);
+            return new Stack<T>(stackSize);
         }
 
     }
