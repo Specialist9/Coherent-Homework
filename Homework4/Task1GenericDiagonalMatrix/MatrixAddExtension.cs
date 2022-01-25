@@ -10,7 +10,6 @@ namespace Task1GenericDiagonalMatrix
     {
         public static Matrix<T> MatrixAdd<T>(this Matrix<T> obj1, Matrix<T> obj2, Add2GenTypes<T> del)
         {
-            //var testDelegate = new Add2GenTypes<T>(AddGenericTypes);
             var testDelegate = del;
 
 

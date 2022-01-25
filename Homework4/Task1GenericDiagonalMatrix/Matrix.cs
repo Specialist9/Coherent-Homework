@@ -57,6 +57,10 @@ namespace Task1GenericDiagonalMatrix
             ElementChanged?.Invoke(this, e);
         }
 
+        public void matrix_ElementChanged(object sender, ElementChangedEventArgs<T> e)
+        {
+            Console.WriteLine($"Matrix element [{e.ElementIndex}, {e.ElementIndex}] changed from {e.OldValue} to {e.NewValue}");
+        }
 
     }
 }
