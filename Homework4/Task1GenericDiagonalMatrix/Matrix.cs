@@ -8,7 +8,7 @@ namespace Task1GenericDiagonalMatrix
 {
     class Matrix<T>
     {
-        int Size { get; }
+        public int Size { get; }
         T[] DiagonalArray { get; }
 
         public Matrix(int size)
