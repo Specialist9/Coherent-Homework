@@ -78,11 +78,7 @@ namespace Task2Stack
             return tempString.ToString();
         }
 
-        public Stack<T> Reverse()
-        {
-            Array.Reverse(myStack);
-            return new Stack<T>(stackSize);
-        }
+
 
     }
 }
