@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Task1GenericDiagonalMatrix
 {
-    class Matrix<T>
+    class DiagonalMatrix<T>
     {
         public int Size { get; }
         T[] DiagonalArray { get; }
 
-        public Matrix(int size)
+        public DiagonalMatrix(int size)
         {
             Size = size >= 0 ? size : throw new ArgumentException();
             DiagonalArray = new T[size];

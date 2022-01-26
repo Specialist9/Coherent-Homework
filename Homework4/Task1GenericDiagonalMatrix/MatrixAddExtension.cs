@@ -8,7 +8,7 @@ namespace Task1GenericDiagonalMatrix
 {
     static class MatrixAddExtension
     {
-        public static Matrix<T> MatrixAdd<T>(this Matrix<T> obj1, Matrix<T> obj2, Add2GenTypes<T> del)
+        public static DiagonalMatrix<T> MatrixAdd<T>(this DiagonalMatrix<T> obj1, DiagonalMatrix<T> obj2, Func<T,T,T> del)
         {
             var testDelegate = del;
 
@@ -21,16 +21,16 @@ namespace Task1GenericDiagonalMatrix
                 newElements[i] = testDelegate.Invoke(obj1[i, i], obj2[i, i]);
             }
 
-            return new Matrix<T>(newSize);
+            return new DiagonalMatrix<T>(newSize);
         }
 
 
         public delegate T Add2GenTypes<T>(T type1, T type2);
 
-        public static T AddGenericTypes<T>(T a, T b)
+        /*public static T AddGenericTypes<T>(T a, T b)
         {
             return (dynamic)a + (dynamic)b;
-        }
+        }*/
 
     }
 }

@@ -8,10 +8,10 @@ namespace Task1GenericDiagonalMatrix
 {
     class MatrixTracker<T>
     {
-        Matrix<T> InputMatrix;
+        DiagonalMatrix<T> InputMatrix;
         ElementChangedEventArgs<T> TrackedMatrixEvent;
 
-        public MatrixTracker(Matrix<T> inputMatrix)
+        public MatrixTracker(DiagonalMatrix<T> inputMatrix)
         {
             InputMatrix = inputMatrix;
             InputMatrix.ElementChanged += trackedMatrixChanged;
