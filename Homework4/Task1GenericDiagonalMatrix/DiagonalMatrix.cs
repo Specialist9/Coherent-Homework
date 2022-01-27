@@ -11,6 +11,13 @@ namespace Task1GenericDiagonalMatrix
         public int Size { get; }
         T[] DiagonalArray { get; }
 
+        public DiagonalMatrix(int size, params T[] diagonalElements)
+        {
+            Size = size >= 0 ? size : throw new ArgumentException();
+            DiagonalArray = diagonalElements;
+
+        }
+
         public DiagonalMatrix(int size)
         {
             Size = size >= 0 ? size : throw new ArgumentException();
@@ -62,5 +69,16 @@ namespace Task1GenericDiagonalMatrix
             Console.WriteLine($"Matrix element [{e.ElementIndex}, {e.ElementIndex}] changed from {e.OldValue} to {e.NewValue}");
         }
 
+        public override string ToString()
+        {
+            StringBuilder tempString = new();
+
+            for(int i = 0; i < Size; i++)
+            {
+                tempString.Append($"{DiagonalArray[i]} / ");
+            }
+            return tempString.ToString();
+        }
+        
     }
 }

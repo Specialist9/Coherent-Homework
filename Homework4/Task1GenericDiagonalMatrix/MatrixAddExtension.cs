@@ -21,16 +21,11 @@ namespace Task1GenericDiagonalMatrix
                 newElements[i] = testDelegate.Invoke(obj1[i, i], obj2[i, i]);
             }
 
-            return new DiagonalMatrix<T>(newSize);
+            return new DiagonalMatrix<T>(newSize, newElements);
         }
 
 
         public delegate T Add2GenTypes<T>(T type1, T type2);
-
-        /*public static T AddGenericTypes<T>(T a, T b)
-        {
-            return (dynamic)a + (dynamic)b;
-        }*/
 
     }
 }

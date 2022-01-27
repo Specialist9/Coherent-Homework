@@ -6,7 +6,6 @@ namespace Task1GenericDiagonalMatrix
 {
     class Program
     {
-        //public delegate T Add2GenTypes<T>(T type1, T type2);
         static float AddIntTypes(float a, float b)
         {
             return a + b;
@@ -30,15 +29,20 @@ namespace Task1GenericDiagonalMatrix
                 Matrix2[0, 0] = 10;
                 Matrix2[1, 1] = 20;
 
-                MatrixTracker<int> MTracker1 = new(Matrix2);
+                MatrixTracker<float> MTracker1 = new(Matrix2);
 
                 Matrix2[1, 1] = 30;
                 MTracker1.Undo();
 
 
-                //Add2GenTypes<int> del1 = new Add2GenTypes<int>(AddGenericTypes);
-
                 Matrix1.MatrixAdd(Matrix2, AddIntTypes);
+
+                Console.WriteLine(Matrix1.ToString());
+                Console.WriteLine(Matrix2.ToString());
+
+                Console.WriteLine((Matrix1.MatrixAdd(Matrix2, AddIntTypes)).ToString());
+
+
 
             }
             catch (ArgumentException)
@@ -49,9 +53,6 @@ namespace Task1GenericDiagonalMatrix
             {
                 Console.WriteLine("Invalid matrix index");
             }
-
-
-
 
         }
     }
