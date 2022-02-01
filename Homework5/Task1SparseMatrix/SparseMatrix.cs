@@ -41,16 +41,11 @@ namespace Task1SparseMatrix
         public override string ToString()
         {
             StringBuilder tempString = new();
-            /*
-            foreach(var matrixcell in MatrixElements)
-            {
-                tempString.Append($"{matrixcell} / ");
-            }*/
+
             for(int i = 0; i < Size; i++)
             {
                 int cellValue = MatrixElements.TryGetValue(i, out cellValue) ? cellValue : default;
                 tempString.Append($" {cellValue},");
-
             }
             
             return tempString.ToString();
@@ -83,6 +78,18 @@ namespace Task1SparseMatrix
                 }
             }
             return count;
+        }
+
+        public IEnumerable<(int, int, int)> GetNoZeroElements()
+        {
+            List<(int, int, int)> tempList = new();
+            foreach(var cell in MatrixElements)
+            {
+                int row = cell.Key / Columns;
+                int column = cell.Key % Columns;
+                tempList.Add((row, column, cell.Value));
+            }
+            return tempList;
         }
     }
 }

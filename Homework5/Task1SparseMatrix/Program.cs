@@ -22,7 +22,9 @@ namespace Task1SparseMatrix
                 Console.WriteLine(cell);
             }*/
             Console.WriteLine(SpMatrix1.GetCount(0));
-            
+            Console.WriteLine(SpMatrix1.GetNoZeroElements());
+
+
         }
     }
 }
