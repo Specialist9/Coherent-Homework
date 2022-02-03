@@ -18,7 +18,6 @@ namespace Task1SparseMatrix
         {
             Rows = rows > 0 ? rows : 1;
             Columns = columns > 0 ? columns : 1;
-            Size = Rows * Columns;
         }
 
         public int this[int row, int column]
@@ -26,8 +25,7 @@ namespace Task1SparseMatrix
             get
             {
                 int index = row * Columns + column;
-                int result;
-                MatrixElements.TryGetValue(index, out result); // + default option
+                int result = MatrixElements.TryGetValue(index, out result) ? result : default;
                 return result;
             }
 
@@ -42,10 +40,9 @@ namespace Task1SparseMatrix
         {
             StringBuilder tempString = new();
 
-            for(int i = 0; i < Size; i++)
+            foreach(var cell in this)
             {
-                int cellValue = MatrixElements.TryGetValue(i, out cellValue) ? cellValue : default;
-                tempString.Append($" {cellValue},");
+                tempString.Append($" {cell}, ");
             }
             
             return tempString.ToString();
@@ -55,10 +52,9 @@ namespace Task1SparseMatrix
         {
             int count = 0;
 
-            for (int i = 0; i < Size; i++) //foreach + IEnumerable
+            foreach (var cell in this)
             {
-                int cellValue;
-                MatrixElements.TryGetValue(i, out cellValue);
+                int cellValue = cell;
                 
                 if(cellValue == x)
                 {
@@ -68,30 +64,53 @@ namespace Task1SparseMatrix
             return count;
         }
 
-        public IEnumerable<(int, int, int)> GetNoZeroElements() // use indexer + IEnumerable
+        /*public IEnumerable<(int, int, int)> GetNoZeroElements() // use indexer + IEnumerable
         {
             List<(int, int, int)> tempList = new();
-            foreach(var cell in MatrixElements)
+            for(int i = 0; i < Rows; i++)
             {
-                int row = cell.Key / Columns;
-                int column = cell.Key % Columns;
-                tempList.Add((row, column, cell.Value));
+                for(int j = 0; j < Columns; j++)
+                {
+                    if(this[i, j] != 0)
+                    {
+                        int row = i;
+                        int column = j;
+                        int value = this[i, j];
+                        tempList.Add((row, column, value));
+                    }
+                }
             }
             var orderedList = tempList.OrderBy(t => t.Item2).ThenBy(t => t.Item1);
             return orderedList;
-        }
+        }*/
 
         public IEnumerator<int> GetEnumerator()
         {
-            //return MatrixElements.Values.GetEnumerator();
-            //return new SparseMatrixEnumerator(Size , MatrixElements) as IEnumerator<int>;
-            return GetEnumerator();
+            for(int i = 0; i < Rows; i++)
+            {
+                for(int j = 0; j < Columns; j++)
+                {
+                    yield return this[i, j];
+                }
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            //return MatrixElements.GetEnumerator();
+            return MatrixElements.GetEnumerator();
+        }
 
+        public IEnumerable<(int, int, int)> GetNoZeroElements()
+        {
+            List<(int, int, int)> tempList = new();
+
+            foreach (var cell in MatrixElements)
+            {
+                tempList.Add((cell.Key / Columns, cell.Key % Columns, cell.Value));
+            }
+            var orderedList = tempList.OrderBy(t => t.Item2).ThenBy(t => t.Item1);
+            return orderedList;
+            
         }
 
     }
