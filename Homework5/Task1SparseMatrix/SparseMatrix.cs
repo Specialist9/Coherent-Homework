@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Task1SparseMatrix
 {
-    class SparseMatrix: IEnumerable
+    class SparseMatrix: IEnumerable<int>
     {
         public int Rows { get; private set; }
         public int Columns { get; private set; }
@@ -27,7 +27,7 @@ namespace Task1SparseMatrix
             {
                 int index = row * Columns + column;
                 int result;
-                MatrixElements.TryGetValue(index, out result);
+                MatrixElements.TryGetValue(index, out result); // + default option
                 return result;
             }
 
@@ -51,23 +51,11 @@ namespace Task1SparseMatrix
             return tempString.ToString();
         }
 
-        public IEnumerator<int> GetEnumerator()
-        {
-            return new SparseMatrixEnumerator(Size , MatrixElements) as IEnumerator<int>;
-
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
- 
-        }
-
         public int GetCount(int x)
         {
             int count = 0;
 
-            for (int i = 0; i < Size; i++)
+            for (int i = 0; i < Size; i++) //foreach + IEnumerable
             {
                 int cellValue;
                 MatrixElements.TryGetValue(i, out cellValue);
@@ -80,7 +68,7 @@ namespace Task1SparseMatrix
             return count;
         }
 
-        public IEnumerable<(int, int, int)> GetNoZeroElements()
+        public IEnumerable<(int, int, int)> GetNoZeroElements() // use indexer + IEnumerable
         {
             List<(int, int, int)> tempList = new();
             foreach(var cell in MatrixElements)
@@ -89,7 +77,22 @@ namespace Task1SparseMatrix
                 int column = cell.Key % Columns;
                 tempList.Add((row, column, cell.Value));
             }
-            return tempList;
+            var orderedList = tempList.OrderBy(t => t.Item2).ThenBy(t => t.Item1);
+            return orderedList;
         }
+
+        public IEnumerator<int> GetEnumerator()
+        {
+            //return MatrixElements.Values.GetEnumerator();
+            //return new SparseMatrixEnumerator(Size , MatrixElements) as IEnumerator<int>;
+            return GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            //return MatrixElements.GetEnumerator();
+
+        }
+
     }
 }

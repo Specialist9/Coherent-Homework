@@ -8,7 +8,7 @@ namespace Task1SparseMatrix
     {
         static void Main(string[] args)
         {
-            SparseMatrix SpMatrix1 = new(3, 3);
+            SparseMatrix SpMatrix1 = new(3, 4);
             SpMatrix1[0, 0] = 27;
             Console.WriteLine(SpMatrix1[2, 2]);
             Console.WriteLine(SpMatrix1[1, 1]);
@@ -17,12 +17,15 @@ namespace Task1SparseMatrix
             SpMatrix1[0, 1] = 45;
             Console.WriteLine(SpMatrix1.ToString());
 
-            /*foreach(var cell in SpMatrix1)
+            Console.WriteLine("///////////////////");
+
+            foreach (var cell in SpMatrix1)
             {
                 Console.WriteLine(cell);
-            }*/
+            }
+            Console.WriteLine("////////////////////");
+
             Console.WriteLine(SpMatrix1.GetCount(0));
-            Console.WriteLine(SpMatrix1.GetNoZeroElements());
 
 
         }
