@@ -8,8 +8,8 @@ namespace Task1GenericDiagonalMatrix
 {
     class MatrixTracker<T>
     {
-        DiagonalMatrix<T> InputMatrix;
-        ElementChangedEventArgs<T> TrackedMatrixEvent;
+        private DiagonalMatrix<T> InputMatrix;
+        private ElementChangedEventArgs<T> TrackedMatrixEvent;
 
         public MatrixTracker(DiagonalMatrix<T> inputMatrix)
         {

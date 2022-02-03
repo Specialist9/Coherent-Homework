@@ -23,11 +23,13 @@ namespace Task1GenericDiagonalMatrix
                 Matrix1[1, 1] = 9;
 
 
-                DiagonalMatrix<float> Matrix2 = new(2);
+                DiagonalMatrix<float> Matrix2 = new(3);
                 Matrix2.ElementChanged += Matrix1.matrix_ElementChanged;
 
                 Matrix2[0, 0] = 10;
                 Matrix2[1, 1] = 20;
+                Matrix2[2, 2] = 30;
+
 
                 MatrixTracker<float> MTracker1 = new(Matrix2);
 

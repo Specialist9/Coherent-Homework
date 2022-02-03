@@ -18,14 +18,22 @@ namespace Task1GenericDiagonalMatrix
 
             for (int i = 0; i < newSize; i++)
             {
-                newElements[i] = testDelegate.Invoke(obj1[i, i], obj2[i, i]);
+                if(i < obj1.Size && i < obj2.Size)
+                {
+                    newElements[i] = testDelegate.Invoke(obj1[i, i], obj2[i, i]);
+                }
+                else if(i >= obj1.Size)
+                {
+                    newElements[i] = obj2[i, i];
+                }
+                else if(i >= obj2.Size)
+                {
+                    newElements[i] = obj1[i, i];
+                }
             }
 
             return new DiagonalMatrix<T>(newSize, newElements);
         }
-
-
-        public delegate T Add2GenTypes<T>(T type1, T type2);
 
     }
 }
