@@ -11,7 +11,6 @@ namespace Task1SparseMatrix
     {
         public int Rows { get; private set; }
         public int Columns { get; private set; }
-        public int Size { get; }
         public Dictionary<int, int> MatrixElements { get; private set; } = new();
 
         public SparseMatrix(int rows, int columns)
@@ -63,26 +62,6 @@ namespace Task1SparseMatrix
             }
             return count;
         }
-
-        /*public IEnumerable<(int, int, int)> GetNoZeroElements() // use indexer + IEnumerable
-        {
-            List<(int, int, int)> tempList = new();
-            for(int i = 0; i < Rows; i++)
-            {
-                for(int j = 0; j < Columns; j++)
-                {
-                    if(this[i, j] != 0)
-                    {
-                        int row = i;
-                        int column = j;
-                        int value = this[i, j];
-                        tempList.Add((row, column, value));
-                    }
-                }
-            }
-            var orderedList = tempList.OrderBy(t => t.Item2).ThenBy(t => t.Item1);
-            return orderedList;
-        }*/
 
         public IEnumerator<int> GetEnumerator()
         {
