@@ -37,5 +37,17 @@ namespace Task2Book
             }
             else throw new FormatException("Wrong format");
         }
+
+        public Book()
+        {
+
+        }
+
+        public override string ToString()
+        {
+            StringBuilder temp = new();
+            temp.Append($"Title: {Title} / Authors {BookAuthors} / Publication date: {PublicationDate} / ISBN: {ISBN}");
+            return temp.ToString();
+        }
     }
 }

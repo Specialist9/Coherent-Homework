@@ -15,6 +15,30 @@ namespace Task2Book
             BookList = new();
         }
 
+        public Book this [string isbn]
+        {
+            get
+            {
+                Book result = new();
+                foreach(var book in BookList)
+                {
+                    if (book.ISBN == isbn)
+                    {
+                        result = book;
+                    }
+                    else
+                    {
+                        throw new KeyNotFoundException("TestMessage");
+                    }
+                }
+                return result;
+            }
 
+        }
+
+        public void AddBook(Book book)
+        {
+            BookList.Add(book);
+        }
     }
 }
