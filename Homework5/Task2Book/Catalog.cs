@@ -19,18 +19,20 @@ namespace Task2Book
         {
             get
             {
-                Book result = new();
+                Book result = new(); //temp reference to Book obj
+                bool bookExists = false; //check if book with this ISBN exists in catalog
                 foreach(var book in BookList)
                 {
                     if (book.ISBN == isbn)
                     {
                         result = book;
-                    }
-                    else
-                    {
-                        throw new KeyNotFoundException("TestMessage");
+                        bookExists = true;
                     }
                 }
+                if (!bookExists)
+                {
+                    throw new KeyNotFoundException();
+                }  
                 return result;
             }
 
@@ -38,7 +40,23 @@ namespace Task2Book
 
         public void AddBook(Book book)
         {
-            BookList.Add(book);
+            bool isbnExists = false;
+            foreach(var item in BookList)
+            {
+                if(item.ISBN == book.ISBN)
+                {
+                    isbnExists = true;
+                }
+            }
+            if (isbnExists)
+            {
+                throw new InvalidOperationException();
+            }
+            else
+            {
+                BookList.Add(book);
+            }
         }
+
     }
 }
