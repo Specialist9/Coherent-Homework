@@ -46,7 +46,7 @@ namespace Task2Book
         public override string ToString()
         {
             StringBuilder temp = new();
-            temp.Append($"Title: {Title} / Authors: {string.Join(",", BookAuthors)} / Publication date: {PublicationDate} / ISBN: {ISBN}");
+            temp.Append($"Title: {Title} / Authors: {string.Join(", ", BookAuthors)} / Publication date: {PublicationDate} / ISBN: {ISBN}");
             return temp.ToString();
         }
     }

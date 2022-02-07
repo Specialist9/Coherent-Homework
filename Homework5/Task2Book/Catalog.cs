@@ -20,8 +20,8 @@ namespace Task2Book
             get
             {
                 Book result = new(); //temp reference to Book obj
-                bool bookExists = false; //check if book with this ISBN exists in catalog
-                foreach(var book in BookList)
+                bool bookExists = false; 
+                foreach(var book in BookList) //check if book with this ISBN exists in catalog
                 {
                     if (book.ISBN == isbn)
                     {
