@@ -26,14 +26,18 @@ namespace Task3Vacation
                 Console.WriteLine($"Employee: {vac.name}, Vacation duration: {(vac.finish - vac.start).Days}");
             }
             Console.WriteLine("//////////////////");
-            double averageVacDuration = CompanyXVacations.VacationDates.Average(x => (x.finish-x.start).Days);
+            double averageVacDuration = CompanyXVacations.VacationDates.Average(x => (x.finish - x.start).Days);
             Console.WriteLine(averageVacDuration);
 
             var tesList = CompanyXVacations.AverageEmployeeVacationDuration();
-            foreach(var item in tesList)
+            foreach (var item in tesList)
             {
                 Console.WriteLine(item);
             }
+            Console.WriteLine("//////////////////");
+
+            CompanyXVacations.EmployeesOnVacationByMonth();
+
         }
     }
 }

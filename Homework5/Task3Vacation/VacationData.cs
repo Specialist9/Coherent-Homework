@@ -28,8 +28,22 @@ namespace Task3Vacation
         public List<(string, double)> AverageEmployeeVacationDuration()
         {
             List<(string, double)> averageByEmployee = VacationDates.GroupBy(e => e.name)
-                                                .Select(g => ((name: g.Key, Avg: g.Average(x => (x.finish - x.start).Days)))).ToList();
+                                                .Select(g => ((Name: g.Key, Avg: g.Average(x => (x.finish - x.start).Days)))).ToList();
             return averageByEmployee;
+        }
+
+        public void EmployeesOnVacationByMonth()
+        {
+            var avgByEmpl = VacationDates.GroupBy(vac => vac.start.Month)
+                                .Select(g => new { Month = g.Key, EmployeesOnVaction = g.Count() })
+                                .AsEnumerable()
+                                .Select(c => new Tuple<int, int>(c.Month, c.EmployeesOnVaction))
+                                .ToList();
+
+            foreach (var element in avgByEmpl)
+            {
+                Console.WriteLine($"Month {element.Item1} - Number of employees on vacation: {element.Item2}");
+            }
         }
     }
 }
