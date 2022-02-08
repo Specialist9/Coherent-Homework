@@ -19,13 +19,16 @@ namespace Task3Vacation
             CompanyXVacations.AddVacation(("Clark Kent", new(2021, 03, 10), new(2021, 03, 25)));
             CompanyXVacations.AddVacation(("Clark Kent", new(2021, 06, 01), new(2021, 06, 15)));
             CompanyXVacations.AddVacation(("Bruce Wayne", new(2021, 07, 01), new(2021, 07, 10)));
-
             Console.WriteLine("//////////////////");
+
+
             foreach (var vac in CompanyXVacations.VacationDates)
             {
                 Console.WriteLine($"Employee: {vac.name}, Vacation duration: {(vac.finish - vac.start).Days}");
             }
             Console.WriteLine("//////////////////");
+
+
             double averageVacDuration = CompanyXVacations.VacationDates.Average(x => (x.finish - x.start).Days);
             Console.WriteLine(averageVacDuration);
 
@@ -36,7 +39,10 @@ namespace Task3Vacation
             }
             Console.WriteLine("//////////////////");
 
+
             CompanyXVacations.EmployeesOnVacationByMonth();
+
+            CompanyXVacations.FreeDays();
 
         }
     }
