@@ -19,6 +19,8 @@ namespace Task3Vacation
             CompanyXVacations.AddVacation(("Clark Kent", new(2021, 03, 10), new(2021, 03, 25)));
             CompanyXVacations.AddVacation(("Clark Kent", new(2021, 06, 01), new(2021, 06, 15)));
             CompanyXVacations.AddVacation(("Bruce Wayne", new(2021, 07, 01), new(2021, 07, 10)));
+            CompanyXVacations.AddVacation(("Bruce Wayne", new(2021, 07, 09), new(2021, 07, 15)));
+
             Console.WriteLine("//////////////////");
 
 
@@ -43,6 +45,13 @@ namespace Task3Vacation
             CompanyXVacations.EmployeesOnVacationByMonth();
 
             CompanyXVacations.FreeDays();
+
+            var Result = CompanyXVacations.CountOverlap();
+            Console.WriteLine("//////////////////");
+
+            var ResultBoolOverlap = CompanyXVacations.Overlap();
+            Console.WriteLine("++++++++++++++++++");
+
 
         }
     }

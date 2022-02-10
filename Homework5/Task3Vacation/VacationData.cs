@@ -75,9 +75,34 @@ namespace Task3Vacation
             return DaysFree as List<DateTime>;
         }
 
-        public void CheckForDataCorrectness()
+        public bool Overlap()
         {
+            return VacationDates.Any(r => VacationDates.Where(q => q != r) //take an element from VacationDates as r and return another element in Vacationdates as q, where q != r
+                                                       .Any(q => q.name == r.name && q.finish >= r.start && q.start <= r.finish)); //
+        }
 
+        public int CountOverlap()
+        {
+            int overlap = 0;
+
+            foreach(var empvac in VacationDates.GroupBy(g => g.name).Where(w => w.Count() > 1)) //Group vacation data by employee name, where number of vacations in group is > 1
+            {
+                var vacdates = VacationDates.Where(x => x.name == empvac.Key).ToList(); //for each of groups make a list of vacation data entries, where employee name corresponds to group key (Employee name)
+                                                                                        //take just the vacations of one employee and put them to list vacdates
+
+                for (int i = 0; i < vacdates.Count; i++) //count elements in vacdates and iterate through them
+                {
+                    for(int j = i+1; j < vacdates.Count; j++) // for every iterration of i start another iteration of element after i
+                    {
+                        if (vacdates[i].start <= vacdates[j].finish && vacdates[j].start <= vacdates[i].finish) //compare vacation dates in i and j for overlap
+                        {
+                            overlap++;
+                        }
+                    }
+                }
+            }
+
+            return overlap;
         }
     }
 }
