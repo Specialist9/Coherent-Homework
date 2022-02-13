@@ -7,17 +7,21 @@ using System.Threading.Tasks;
 namespace Task1Logger
 {
     [TrackingEntity]
-    class PassedObject
+    class Student
     {
-        [TrackingProperty("Name")]
-        string Name { get; }
-        int Age { get; }
+        [TrackingProperty("NameAttr")]
+        public string Name { get; }
 
-        [TrackingProperty("Phone number")]
-        string PhoneNumber { get; set; }
-        string EmailAddress { get; set; }
+        [TrackingProperty]
+        public int Age { get; }
 
-        public PassedObject(string name, int age, string phone, string email)
+        [TrackingProperty("Phone number Attr")]
+        public string PhoneNumber { get; set; }
+
+        [TrackingProperty]
+        public string EmailAddress { get; set; }
+
+        public Student(string name, int age, string phone, string email)
         {
             Name = name;
             Age = age;
