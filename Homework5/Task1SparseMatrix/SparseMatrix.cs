@@ -31,7 +31,7 @@ namespace Task1SparseMatrix
             set
             {
                 int index = row * Columns + column;
-                MatrixElements[index] = value;
+                if(value != 0) MatrixElements[index] = value;
             }
         }
 

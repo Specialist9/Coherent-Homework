@@ -30,6 +30,11 @@ namespace Task1SparseMatrix
 
             Console.WriteLine(SpMatrix1.GetCount(27));
 
+            foreach(var cell in SpMatrix1.GetNoZeroElements())
+            {
+                Console.WriteLine(cell);
+            }
+
         }
     }
 }
