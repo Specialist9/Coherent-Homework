@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
+using AttributeLibrary;
 
 namespace Task1Logger
 {
@@ -19,7 +20,12 @@ namespace Task1Logger
 
             TestLogger.Track(TestStudent);
 
+            Logger TestLogger2 = new("TestLogger2.json");
+            Student TestStudent2 = new("John", 21, "+37097654321", "john123@gmail.com");
+            Console.WriteLine(TestStudent.ToString());
 
+
+            TestLogger2.Track(TestStudent2);
         }
     }
 }

@@ -8,9 +8,9 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.IO;
 
-namespace Task1Logger
+namespace AttributeLibrary
 {
-    class Logger
+    public class Logger
     {
         public string FileName { get; }
 
@@ -50,7 +50,7 @@ namespace Task1Logger
                                 attrName = prop.Name; // else assign Property name to attrName
                             }
 
-                            propValue = (prop.GetValue(testObject, null)).ToString(); // get Property value and assign tp propValue
+                            propValue = prop.GetValue(testObject, null).ToString(); // get Property value and assign tp propValue
 
                             PropsAndValues.Add(attrName, propValue); // add name and value to dictionary
                         }

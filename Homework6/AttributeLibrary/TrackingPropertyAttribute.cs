@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task1Logger
+namespace AttributeLibrary
 {
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
     public class TrackingPropertyAttribute : Attribute
