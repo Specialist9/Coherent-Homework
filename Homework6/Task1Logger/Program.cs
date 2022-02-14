@@ -19,10 +19,6 @@ namespace Task1Logger
 
             TestLogger.Track(TestStudent);
 
-            /*foreach(var prop in TestStudent.GetType().GetProperties())
-            {
-                Console.WriteLine($"{prop.Name} : {prop.GetValue(TestStudent, null)}");
-            }*/
 
         }
     }

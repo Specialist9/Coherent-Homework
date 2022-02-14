@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.IO;
 
 namespace Task1Logger
 {
@@ -18,46 +21,45 @@ namespace Task1Logger
 
         public void Track(object testObject)
         {
-            var objType = testObject.GetType();
+            var objType = testObject.GetType(); //get passed object type
 
-            Dictionary<string, string> PropsAndValues = new();
+            Dictionary<string, string> PropsAndValues = new(); // initialize dictionary for (property name : property value) pairs
 
-            PropertyInfo[] props = objType.GetProperties();
+            PropertyInfo[] props = objType.GetProperties(); //get an array of properties for passed object type
 
-            if (testObject.GetType().GetCustomAttributes<TrackingEntityAttribute>() != null)
+            if (testObject.GetType().GetCustomAttributes<TrackingEntityAttribute>() != null) // if there is a custom attribute TrackingEntity
             {
-                foreach (var prop in props)
+                foreach (var prop in props) // go through all properties of passed object type
                 {
-                    object[] CustomAttributes = prop.GetCustomAttributes(true);
+                    object[] CustomAttributes = prop.GetCustomAttributes(false); // get an array of all custom attributes (subclasses not checked)
 
-                    foreach (var attr in CustomAttributes)
+                    foreach (var attr in CustomAttributes) // go through all the custom attributes
                     {
-                        TrackingPropertyAttribute trackA = attr as TrackingPropertyAttribute;
+                        TrackingPropertyAttribute trackA = attr as TrackingPropertyAttribute; // initialize trackA variable as TrackingProperty
                         string attrName;
                         string propValue;
 
-                        if (trackA != null)
+                        if (trackA != null) // if TrackingPropertyAttribute exists
                         {
-                            if (trackA.Name != null)
+                            if (trackA.Name != null) // if TrackingPropertyAttribute has a name
                             {
-                                attrName = trackA.Name;
-                                propValue = (prop.GetValue(testObject, null)).ToString();
+                                attrName = trackA.Name; // assign TrackingPropertyAttribute name to attrName
                             }
                             else
                             {
-                                attrName = prop.Name;
-                                propValue = (prop.GetValue(testObject, null)).ToString();
+                                attrName = prop.Name; // else assign Property name to attrName
                             }
 
-                            PropsAndValues.Add(attrName, propValue);
+                            propValue = (prop.GetValue(testObject, null)).ToString(); // get Property value and assign tp propValue
+
+                            PropsAndValues.Add(attrName, propValue); // add name and value to dictionary
                         }
                     }
                 }
 
-                foreach (var dic in PropsAndValues)
-                {
-                    Console.WriteLine($"{dic.Key} : {dic.Value}");
-                }
+                string json = JsonSerializer.Serialize(PropsAndValues);
+                File.WriteAllText(FileName, json);
+                Console.WriteLine(File.ReadAllText(FileName));
             }
         }
 
