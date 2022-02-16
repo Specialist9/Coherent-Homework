@@ -36,7 +36,8 @@ namespace Task3Vacation
         {
             var avgByEmpl = VacationDates.Where(x => (x.finish - x.start).Days > 1)
                                 .GroupBy(vac => vac.start.Month)
-                                .Select(c => new Tuple<int, int>(c.Key, c.Count()))
+                                .Select(g => new {Month = g.Key, EmpOnVacation = g.Select(e => e.name).Distinct().Count()})
+                                .Select(c => new Tuple<int, int>(c.Month, c.EmpOnVacation))
                                 .ToList();
 
             foreach (var element in avgByEmpl)
@@ -50,29 +51,29 @@ namespace Task3Vacation
             DateTime yearStart = new(2021, 01, 01);
             DateTime yearEnd = new(2021, 12, 31);
             
-            List<DateTime> Year2021 = new();
+            List<DateTime> year2021 = new();
 
             for (DateTime date = yearStart; date <= yearEnd; date = date.AddDays(1))
             {
-                Year2021.Add(date);
+                year2021.Add(date);
             }
 
-            List<DateTime> VacDates = new();
+            List<DateTime> vacDates = new();
 
             foreach (var element in VacationDates)
             {
                 for (DateTime date = element.Item2; date <= element.Item3; date = date.AddDays(1))
                 {
-                    if (!VacDates.Contains(date))
+                    if (!vacDates.Contains(date))
                     {
-                        VacDates.Add(date);
+                        vacDates.Add(date);
                     }
                 }
             }
 
-            var DaysFree = Year2021.Except(VacDates);
+            var daysFree = year2021.Except(vacDates);
 
-            return DaysFree as List<DateTime>;
+            return daysFree as List<DateTime>;
         }
 
         public bool Overlap()
