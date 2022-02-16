@@ -23,13 +23,14 @@ namespace AttributeLibrary
         {
             var objType = testObject.GetType(); //get passed object type
 
-            Dictionary<string, string> PropsAndValues = new(); // initialize dictionary for (property name : property value) pairs
+            Dictionary<string, string> propsAndValues = new(); // initialize dictionary for (property name : property value) pairs
 
-            PropertyInfo[] props = objType.GetProperties(); //get an array of properties for passed object type
 
             if (testObject.GetType().GetCustomAttributes<TrackingEntityAttribute>() != null) // if there is a custom attribute TrackingEntity
             {
-                foreach (var prop in props) // go through all properties of passed object type
+                MemberInfo[] members = objType.GetProperties().Cast<MemberInfo>().Concat(objType.GetFields()).ToArray(); //get an array of all properties & fields of passed object type
+
+                foreach (var prop in members) // go through all properties & fields of passed object type
                 {
                     object[] CustomAttributes = prop.GetCustomAttributes(false); // get an array of all custom attributes (subclasses not checked)
 
@@ -50,16 +51,20 @@ namespace AttributeLibrary
                                 attrName = prop.Name; // else assign Property name to attrName
                             }
 
-                            propValue = prop.GetValue(testObject, null).ToString(); // get Property value and assign tp propValue
 
-                            PropsAndValues.Add(attrName, propValue); // add name and value to dictionary
+                            propValue = prop.MemberType == MemberTypes.Property ? ((PropertyInfo)prop).GetValue(testObject).ToString() : ((FieldInfo)prop).GetValue(testObject).ToString();
+                            //if member is Property get value of Property else get value of Field and put it to string
+
+                            propsAndValues.Add(attrName, propValue); // add name and value to dictionary
                         }
                     }
                 }
 
-                string json = JsonSerializer.Serialize(PropsAndValues);
+                string json = JsonSerializer.Serialize(propsAndValues);
                 File.WriteAllText(FileName, json);
                 Console.WriteLine(File.ReadAllText(FileName));
+
+                
             }
         }
 

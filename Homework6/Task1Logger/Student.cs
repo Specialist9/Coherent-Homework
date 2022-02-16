@@ -10,6 +10,9 @@ namespace Task1Logger
     [TrackingEntity]
     class Student
     {
+        [TrackingProperty("ID attr")]
+        public readonly int ID;
+
         [TrackingProperty("NameAttr")]
         public string Name { get; }
 
@@ -22,8 +25,9 @@ namespace Task1Logger
         [TrackingProperty]
         public string EmailAddress { get; set; }
 
-        public Student(string name, int age, string phone, string email)
+        public Student(int id, string name, int age, string phone, string email)
         {
+            ID = id;
             Name = name;
             Age = age;
             PhoneNumber = phone;
