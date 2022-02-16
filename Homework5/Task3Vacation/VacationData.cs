@@ -28,16 +28,17 @@ namespace Task3Vacation
         public List<(string, double)> AverageEmployeeVacationDuration()
         {
             List<(string, double)> averageByEmployee = VacationDates.GroupBy(e => e.name)
-                                                .Select(g => ((Name: g.Key, Avg: g.Average(x => (x.finish - x.start).Days)))).ToList();
+                                                                    .Select(g => ((Name: g.Key, Avg: g.Average(x => (x.finish - x.start).Days))))
+                                                                    .ToList();
             return averageByEmployee;
         }
 
         public void EmployeesOnVacationByMonth()
         {
-            var avgByEmpl = VacationDates.Where(x => (x.finish - x.start).Days > 1)
-                                .GroupBy(vac => vac.start.Month)
-                                .Select(g => new {Month = g.Key, EmpOnVacation = g.Select(e => e.name).Distinct().Count()})
-                                .Select(c => new Tuple<int, int>(c.Month, c.EmpOnVacation))
+            var avgByEmpl = VacationDates.Where(x => (x.finish - x.start).Days > 1) //include only vacations longer than 1 day
+                                .GroupBy(vac => vac.start.Month) //group by each vacation's star date's month value
+                                .Select(g => new {Month = g.Key, EmpOnVacation = g.Select(e => e.name).Distinct().Count()}) //make a new selection of group Month = Key(month value)
+                                .Select(c => new Tuple<int, int>(c.Month, c.EmpOnVacation))                                 //and EmpOnVacation = select from each group elements with distinct name and count them
                                 .ToList();
 
             foreach (var element in avgByEmpl)
