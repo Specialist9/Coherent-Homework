@@ -32,9 +32,9 @@ namespace AttributeLibrary
 
                 foreach (var prop in members) // go through all properties & fields of passed object type
                 {
-                    object[] CustomAttributes = prop.GetCustomAttributes(false); // get an array of all custom attributes (subclasses not checked)
+                    object[] customAttributes = prop.GetCustomAttributes(false); // get an array of all custom attributes (subclasses not checked)
 
-                    foreach (var attr in CustomAttributes) // go through all the custom attributes
+                    foreach (var attr in customAttributes) // go through all the custom attributes
                     {
                         TrackingPropertyAttribute trackA = attr as TrackingPropertyAttribute; // initialize trackA variable as TrackingProperty
                         string attrName;

@@ -12,20 +12,20 @@ namespace Task1Logger
     {
         static void Main(string[] args)
         {
-            Logger TestLogger = new("testing.json");
+            Logger testLogger = new("testing.json");
 
-            Student TestStudent = new(345, "Mike", 18, "+37012345678", "mike18@gmail.com");
+            Student testStudent = new(345, "Mike", 18, "+37012345678", "mike18@gmail.com");
 
-            Console.WriteLine(TestStudent.ToString());
+            Console.WriteLine(testStudent.ToString());
 
-            TestLogger.Track(TestStudent);
+            testLogger.Track(testStudent);
 
-            Logger TestLogger2 = new("TestLogger2.json");
-            Student TestStudent2 = new(123, "John", 21, "+37097654321", "john123@gmail.com");
-            Console.WriteLine(TestStudent.ToString());
+            Logger testLogger2 = new("TestLogger2.json");
+            Student testStudent2 = new(123, "John", 21, "+37097654321", "john123@gmail.com");
+            Console.WriteLine(testStudent.ToString());
 
 
-            TestLogger2.Track(TestStudent2);
+            testLogger2.Track(testStudent2);
         }
     }
 }

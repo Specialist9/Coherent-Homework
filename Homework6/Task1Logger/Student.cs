@@ -10,7 +10,7 @@ namespace Task1Logger
     [TrackingEntity]
     class Student
     {
-        [TrackingProperty("ID attr")]
+        [TrackingProperty]
         public readonly int ID;
 
         [TrackingProperty("NameAttr")]
