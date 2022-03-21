@@ -1,39 +1,50 @@
-﻿using System;
+using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task1GenericDiagonalMatrix
 {
     class Program
     {
-        delegate T Add2GenTypes<T>(T type1, T type2);
-
-        static T AddGenericTypes<T>(T a, T b)
+        static float AddIntTypes(float a, float b)
         {
-            return (dynamic)a + (dynamic)b;
+            return a + b;
         }
         static void Main(string[] args)
         {
-
             try
             {
-                Matrix<int> Matrix1 = new(2);
-                Matrix1.ElementChanged += matrix_ElementChanged;
-                Matrix1[1, 1] = 1;
-                Matrix1[1, 1] = 2;
-                Matrix1[1, 1] = 3;
-                Matrix1[0, 0] = 9;
-                Matrix1[0, 1] = 8;
+                DiagonalMatrix<float> Matrix1 = new(2);
+                Matrix1.ElementChanged += Matrix1.matrix_ElementChanged;
+                Matrix1[0, 0] = 3;
+                Matrix1[0, 0] = 3;
 
-                Matrix<int> Matrix2 = new(2);
+                Matrix1[0, 0] = 4;
+                Matrix1[1, 1] = 9;
+
+
+                DiagonalMatrix<float> Matrix2 = new(3);
+                Matrix2.ElementChanged += Matrix1.matrix_ElementChanged;
+
                 Matrix2[0, 0] = 10;
                 Matrix2[1, 1] = 20;
+                Matrix2[2, 2] = 30;
 
-                var delegate1 = new Add2GenTypes<int>(AddGenericTypes); 
 
-                Matrix1.
+                MatrixTracker<float> MTracker1 = new(Matrix2);
+
+                Matrix2[1, 1] = 30;
+                MTracker1.Undo();
+
+
+                Matrix1.MatrixAdd(Matrix2, AddIntTypes);
+
+                Console.WriteLine(Matrix1.ToString());
+                Console.WriteLine(Matrix2.ToString());
+
+                Console.WriteLine((Matrix1.MatrixAdd(Matrix2, AddIntTypes)).ToString());
+
+
 
             }
             catch (ArgumentException)
@@ -44,13 +55,6 @@ namespace Task1GenericDiagonalMatrix
             {
                 Console.WriteLine("Invalid matrix index");
             }
-
-            void matrix_ElementChanged(object sender, ElementChangedEventArgs<int> e)
-            {
-                Console.WriteLine($"Matrix element [{e.ElementIndex}, {e.ElementIndex}] changed from {e.OldValue} to {e.NewValue}");
-            }
-
-
 
         }
     }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +6,79 @@ using System.Threading.Tasks;
 
 namespace Task1GenericDiagonalMatrix
 {
-    public class DiagonalMatrix<T>
+    class DiagonalMatrix<T>
     {
+        public int Size { get; }
+        T[] DiagonalArray { get; }
 
+        public DiagonalMatrix(int size, params T[] diagonalElements)
+        {
+            Size = size >= 0 ? size : throw new ArgumentException();
+            DiagonalArray = diagonalElements;
+
+        }
+
+        public DiagonalMatrix(int size)
+        {
+            Size = size >= 0 ? size : throw new ArgumentException();
+            DiagonalArray = new T[size];
+        }
+
+        public T this[int i, int j]
+        {
+            get
+            {
+                if (i < 0 || i >= DiagonalArray.Length)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+                else if (i == j)
+                {
+                    return DiagonalArray[i];
+                }
+                else return default;
+            }
+
+            set
+            {
+                if (i < 0 || i >= DiagonalArray.Length)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+                else if (i == j)
+                {
+                    if (DiagonalArray[i] != null && DiagonalArray[i].Equals(value)) return;
+                    T oldValue = DiagonalArray[i];
+                    DiagonalArray[i] = value;
+                    OnElementChanged(new ElementChangedEventArgs<T>(oldValue, value, i));
+
+                }
+                
+            }
+        }
+
+        public event EventHandler<ElementChangedEventArgs<T>> ElementChanged;
+
+        protected virtual void OnElementChanged(ElementChangedEventArgs<T> e)
+        {
+            ElementChanged?.Invoke(this, e);
+        }
+
+        public void matrix_ElementChanged(object sender, ElementChangedEventArgs<T> e)
+        {
+            Console.WriteLine($"Matrix element [{e.ElementIndex}, {e.ElementIndex}] changed from {e.OldValue} to {e.NewValue}");
+        }
+
+        public override string ToString()
+        {
+            StringBuilder tempString = new();
+
+            for(int i = 0; i < Size; i++)
+            {
+                tempString.Append($"{DiagonalArray[i]} / ");
+            }
+            return tempString.ToString();
+        }
+        
     }
 }
