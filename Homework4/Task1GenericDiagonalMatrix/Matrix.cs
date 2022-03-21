@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,19 +6,12 @@ using System.Threading.Tasks;
 
 namespace Task1GenericDiagonalMatrix
 {
-    class DiagonalMatrix<T>
+    class Matrix<T>
     {
         public int Size { get; }
         T[] DiagonalArray { get; }
 
-        public DiagonalMatrix(int size, params T[] diagonalElements)
-        {
-            Size = size >= 0 ? size : throw new ArgumentException();
-            DiagonalArray = diagonalElements;
-
-        }
-
-        public DiagonalMatrix(int size)
+        public Matrix(int size)
         {
             Size = size >= 0 ? size : throw new ArgumentException();
             DiagonalArray = new T[size];
@@ -64,21 +57,6 @@ namespace Task1GenericDiagonalMatrix
             ElementChanged?.Invoke(this, e);
         }
 
-        public void matrix_ElementChanged(object sender, ElementChangedEventArgs<T> e)
-        {
-            Console.WriteLine($"Matrix element [{e.ElementIndex}, {e.ElementIndex}] changed from {e.OldValue} to {e.NewValue}");
-        }
 
-        public override string ToString()
-        {
-            StringBuilder tempString = new();
-
-            for(int i = 0; i < Size; i++)
-            {
-                tempString.Append($"{DiagonalArray[i]} / ");
-            }
-            return tempString.ToString();
-        }
-        
     }
 }
